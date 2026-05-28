@@ -1,0 +1,45 @@
+name: RTPPlus
+version: 0.1.0
+main: dev.rtpplus.RTPPlusPlugin
+api-version: '26.1.2'
+author: SQWARE / Conflict
+website: https://sqware.gg
+description: Performance-focused random teleportation with warmups, cooldowns, and safe-location checks.
+commands:
+  rtp:
+    description: Randomly teleport to a safe location.
+    usage: /rtp [world|cancel]
+    aliases:
+      - wild
+      - wilderness
+      - randomtp
+  rtpplus:
+    description: Manage RTP+.
+    usage: /rtpplus [status|reload|cancel|cooldown|test]
+    aliases:
+      - rtpadmin
+permissions:
+  rtpplus.use:
+    description: Allows using /rtp.
+    default: true
+  rtpplus.world:
+    description: Allows choosing a configured RTP world.
+    default: true
+  rtpplus.cancel:
+    description: Allows cancelling your pending RTP request.
+    default: true
+  rtpplus.cooldown.bypass:
+    description: Bypasses RTP cooldowns.
+    default: op
+  rtpplus.warmup.bypass:
+    description: Bypasses RTP warmups.
+    default: op
+  rtpplus.admin:
+    description: Allows administrative RTP+ commands.
+    default: op
+    children:
+      rtpplus.use: true
+      rtpplus.world: true
+      rtpplus.cancel: true
+      rtpplus.cooldown.bypass: true
+      rtpplus.warmup.bypass: true

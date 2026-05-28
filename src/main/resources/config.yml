@@ -1,0 +1,128 @@
+# RTPPlus
+config-version: 3
+
+teleport:
+  default-world: ""
+  warmup-seconds: 5
+  cooldown-seconds: 300
+  cancel-on-move: true
+  cancel-on-damage: true
+  movement-threshold-blocks: 0.35
+  use-teleport-async: true
+  min-y: -64
+  max-y: 320
+
+performance:
+  # How many player requests may actively search at the same time.
+  concurrent-searches: 2
+  # How many candidate locations each request may test before failing.
+  max-attempts-per-request: 180
+  # How long a request may search before timing out.
+  search-timeout-seconds: 45
+  # If true, RTP+ asks Paper to load candidate chunks asynchronously.
+  async-chunk-load: true
+  # If true, existing chunks are preferred before new chunks are generated.
+  prefer-loaded-chunks: false
+  # Number of loaded-chunk candidates to try before allowing generation.
+  loaded-chunk-attempts: 0
+
+safety:
+  allow-nether-roof: false
+  require-solid-ground: true
+  require-two-air-blocks: true
+  # How many Y levels below the surface heightmap RTP+ may inspect.
+  # This avoids false failures from trees, leaves, snow layers, or heightmap edge cases.
+  surface-scan-depth: 8
+  # If true, normal-world locations with no sky light are rejected.
+  avoid-caves: false
+  min-sky-light: 0
+  blacklist-biomes:
+    - OCEAN
+    - DEEP_OCEAN
+    - FROZEN_OCEAN
+    - DEEP_FROZEN_OCEAN
+    - COLD_OCEAN
+    - DEEP_COLD_OCEAN
+    - LUKEWARM_OCEAN
+    - DEEP_LUKEWARM_OCEAN
+    - WARM_OCEAN
+  unsafe-ground:
+    - AIR
+    - CAVE_AIR
+    - VOID_AIR
+    - WATER
+    - LAVA
+    - FIRE
+    - SOUL_FIRE
+    - MAGMA_BLOCK
+    - CACTUS
+    - POWDER_SNOW
+    - CAMPFIRE
+    - SOUL_CAMPFIRE
+  unsafe-space:
+    - WATER
+    - LAVA
+    - FIRE
+    - SOUL_FIRE
+    - POWDER_SNOW
+    - COBWEB
+
+effects:
+  sound-warmup: BLOCK_NOTE_BLOCK_PLING
+  sound-success: ENTITY_ENDERMAN_TELEPORT
+  sound-fail: BLOCK_NOTE_BLOCK_BASS
+  particles: true
+  particle: PORTAL
+  particle-count: 32
+
+worlds:
+  world:
+    enabled: true
+    center-mode: spawn
+    center-x: 0
+    center-z: 0
+    min-radius: 500
+    max-radius: 5000
+    respect-world-border: true
+    square-search: false
+  world_nether:
+    enabled: false
+    center-mode: spawn
+    center-x: 0
+    center-z: 0
+    min-radius: 250
+    max-radius: 2500
+    respect-world-border: true
+    square-search: false
+
+messages:
+  prefix: "&#2b98fdRTP+ &8> &7"
+  no-permission: "&#ED4245You do not have permission to do that."
+  players-only: "&#ED4245Only players can use that."
+  invalid-world: "&#ED4245That RTP world is not configured or enabled."
+  already-searching: "&#ED4245You already have an RTP request running. Use &f/rtp cancel&#ED4245."
+  none-running: "&#ED4245You do not have a pending RTP request."
+  queued: "&7Finding a safe location in &#2b98fd{world}&7. Queue position: &f{position}&7."
+  warmup: "&7Teleporting in &#2b98fd{seconds}s&7. Stay still."
+  searching: "&7Searching for a safe location in &#2b98fd{world}&7..."
+  success: "&7Teleported to &#2b98fd{x}&7, &#2b98fd{y}&7, &#2b98fd{z} &7in &f{world}&7."
+  failed: "&#ED4245Could not find a safe location after &f{attempts} &#ED4245attempts. Try again later."
+  cancelled: "&#ED4245RTP cancelled."
+  cancelled-move: "&#ED4245RTP cancelled because you moved."
+  cancelled-damage: "&#ED4245RTP cancelled because you took damage."
+  cooldown: "&#ED4245You can RTP again in &f{time}&#ED4245."
+  reloaded: "&7RTP+ reloaded."
+  status: "&7Requests: &f{active} &#2b98fdactive&7, &f{queued} &#2b98fdqueued&7. Searches: &f{searches}&7. Success: &f{success}&7. Failed: &f{failed}&7."
+  cooldown-cleared: "&7Cleared RTP cooldown for &f{player}&7."
+  usage: |-
+    &fRTP+ Commands
+    &#2b98fd/rtp &8- &7Randomly teleport in the default world
+    &#2b98fd/rtp <world> &8- &7Randomly teleport in a configured world
+    &#2b98fd/rtp cancel &8- &7Cancel a pending RTP
+  usage-admin: |-
+    &fRTP+ Admin Commands
+    &#2b98fd/rtpplus status &8- &7Show queue and success stats
+    &#2b98fd/rtpplus reload &8- &7Reload config
+    &#2b98fd/rtpplus cancel <player> &8- &7Cancel a player's RTP
+    &#2b98fd/rtpplus cooldown clear <player> &8- &7Clear cooldown
+    &#2b98fd/rtpplus test [world] &8- &7Run a test search from your location
