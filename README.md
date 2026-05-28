@@ -1,5 +1,7 @@
 # RTPPlus
 
+**Get the plugin jar, setup help, and updates in the SQWARE Discord: [discord.sqware.gg](https://discord.sqware.gg).**
+
 RTPPlus is a BetterRTP-style random teleport plugin for Paper servers. It uses bounded request queues, warmups, cooldowns, Paper async chunk loading, world-border aware searches, and strict safe-location checks.
 
 Use it when you want `/rtp`, `/wild`, or `/randomtp` without expensive unbounded location searches.
@@ -56,8 +58,3 @@ mvn package
 ```
 
 The jar is written to `target/RTPPlus-0.1.0.jar`.
-
-## Support
-
-- Website: https://sqware.gg
-- Discord: https://discord.sqware.gg
