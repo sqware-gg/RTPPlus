@@ -1,7 +1,7 @@
 name: RTPPlus
 version: 0.1.0
 main: dev.rtpplus.RTPPlusPlugin
-api-version: '26.1.2'
+api-version: '26.2'
 author: SQWARE / Conflict
 website: https://sqware.gg
 description: Performance-focused random teleportation with warmups, cooldowns, and safe-location checks.
